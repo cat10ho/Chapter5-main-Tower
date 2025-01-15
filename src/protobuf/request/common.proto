@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package common; //페키지 이름
+
+// 공통 패킷 구조
+message Packet {
+  ushort packetType = 1;      // 핸들러 ID (4바이트) 
+  string version = 2;     // 클라이언트 버전 (문자열) 
+  uint32 sequence = 3;  // 
+  bytes payload = 4;         // 실제 데이터
+}
