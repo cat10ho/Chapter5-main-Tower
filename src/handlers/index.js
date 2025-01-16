@@ -1,6 +1,12 @@
 import { HANDLER_IDS } from '../constants/handlerIds.js';
+import gameEndHandler from './game/gameEndhandler.js';
 import matchHandler from './matching/matchhandler.js';
+import monsterAttackBaseHandler from './monster/monsterAttackBasehandler.js';
+import monsterDeathNotificationHandler from './monster/monsterDeathNotificationhandler.js';
+import spawnMonsterHandler from './monster/spawnMonsterhandler.js';
 import testHandler from './test/testhandler.js';
+import towerAttackHandler from './tower/towerAttackhandler.js';
+import towerPurchaseHandler from './tower/towerPurchasehandler.js';
 import loginHandler from './user/loginhandler.js';
 import registHandler from './user/registhandler.js';
 
@@ -41,7 +47,7 @@ const handlers = {
     packetname: 'stateSyncNotification',
   },
   [HANDLER_IDS.TOWERPURCHASEREQUST]: {
-    handler: testHandler,
+    handler: towerPurchaseHandler,
     protoType: 'packets.C2STowerPurchaseRequest',
     packetname: 'towerPurchaseRequest',
   },
@@ -56,7 +62,7 @@ const handlers = {
     packetname: 'addEnemyTowerNotification',
   },
   [HANDLER_IDS.SPAWNMONSTERREQUST]: {
-    handler: testHandler,
+    handler: spawnMonsterHandler,
     protoType: 'packets.C2SSpawnMonsterRequest',
     packetname: 'spawnMonsterRequest',
   },
@@ -71,7 +77,7 @@ const handlers = {
     packetname: 'spawnEnemyMonsterNotification',
   },
   [HANDLER_IDS.TOWERATTACKREQUST]: {
-    handler: testHandler,
+    handler: towerAttackHandler,
     protoType: 'packets.C2STowerAttackRequest',
     packetname: 'towerAttackRequest',
   },
@@ -81,7 +87,7 @@ const handlers = {
     packetname: 'enemyTowerAttackNotification',
   },
   [HANDLER_IDS.MONSTERATTACKBASEREQUST]: {
-    handler: testHandler,
+    handler: monsterAttackBaseHandler,
     protoType: 'packets.C2SMonsterAttackBaseRequest',
     packetname: 'monsterAttackBaseRequest',
   },
@@ -96,12 +102,12 @@ const handlers = {
     packetname: 'gameOverNotification',
   },
   [HANDLER_IDS.GAMEENDREQUST]: {
-    handler: testHandler,
+    handler: gameEndHandler,
     protoType: 'packets.C2SGameEndRequest',
     packetname: 'gameEndRequest',
   },
   [HANDLER_IDS.MONSTERDEATHNOTIFICATION]: {
-    handler: testHandler,
+    handler: monsterDeathNotificationHandler,
     protoType: 'packets.C2SMonsterDeathNotification',
     packetname: 'monsterDeathNotification',
   },
