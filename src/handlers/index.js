@@ -1,40 +1,42 @@
 import { HANDLER_IDS } from '../constants/handlerIds.js';
+import matchHandler from './matching/matchhandler.js';
 import testHandler from './test/testhandler.js';
-import LoginHandler from './test/testloginhandler.js';
+import loginHandler from './user/loginhandler.js';
+import registHandler from './user/registhandler.js';
 
 const handlers = {
   [HANDLER_IDS.REGISTEREQUST]: {
-    handler: testHandler,
+    handler: registHandler,
     protoType: 'packets.C2SRegisterRequest',
     packetname: 'registerRequest',
   },
   [HANDLER_IDS.REGISTERESPONSE]: {
-    handler: testHandler,
+    //handler: testHandler,
     protoType: 'packets.S2CRegisterResponse',
     packetname: 'registerResponse',
   },
   [HANDLER_IDS.LOGINREQUEST]: {
-    handler: LoginHandler,
+    handler: loginHandler,
     protoType: 'packets.C2SLoginRequest',
     packetname: 'loginRequest',
   },
   [HANDLER_IDS.LOGINRESPONSE]: {
-    handler: testHandler,
+    //handler: testHandler,
     protoType: 'packets.S2CLoginResponse',
     packetname: 'loginResponse',
   },
   [HANDLER_IDS.MATCHREQUST]: {
-    handler: testHandler,
+    handler: matchHandler,
     protoType: 'packets.C2SMatchRequest',
     packetname: 'matchRequest',
   },
   [HANDLER_IDS.MATCHSTARTNOTIFICATION]: {
-    handler: testHandler,
+    //handler: testHandler,
     protoType: 'packets.S2CMatchStartNotification',
     packetname: 'matchStartNotification',
   },
   [HANDLER_IDS.STATESYNCNOTIFICATION]: {
-    handler: testHandler,
+    //handler: testHandler,
     protoType: 'packets.S2CStateSyncNotification',
     packetname: 'stateSyncNotification',
   },
@@ -44,12 +46,12 @@ const handlers = {
     packetname: 'towerPurchaseRequest',
   },
   [HANDLER_IDS.TOWERPURCHASERESPONSE]: {
-    handler: testHandler,
+    //handler: testHandler,
     protoType: 'packets.S2CTowerPurchaseResponse',
     packetname: 'towerPurchaseResponse',
   },
   [HANDLER_IDS.ADDENEMYTOWERNOTIFICATION]: {
-    handler: testHandler,
+    //handler: testHandler,
     protoType: 'packets.S2CAddEnemyTowerNotification',
     packetname: 'addEnemyTowerNotification',
   },
@@ -59,12 +61,12 @@ const handlers = {
     packetname: 'spawnMonsterRequest',
   },
   [HANDLER_IDS.SPAWNMONSTERRESPONSE]: {
-    handler: testHandler,
+    //handler: testHandler,
     protoType: 'packets.S2CSpawnMonsterResponse',
     packetname: 'spawnMonsterRespons',
   },
   [HANDLER_IDS.SPAWNMONSTERNOTIFICATION]: {
-    handler: testHandler,
+    //handler: testHandler,
     protoType: 'packets.S2CSpawnEnemyMonsterNotification',
     packetname: 'spawnEnemyMonsterNotification',
   },
@@ -74,7 +76,7 @@ const handlers = {
     packetname: 'towerAttackRequest',
   },
   [HANDLER_IDS.ENEMYTOWERATTACKNOTIFICATION]: {
-    handler: testHandler,
+    //handler: testHandler,
     protoType: 'packets.S2CEnemyTowerAttackNotification',
     packetname: 'enemyTowerAttackNotification',
   },
@@ -84,12 +86,12 @@ const handlers = {
     packetname: 'monsterAttackBaseRequest',
   },
   [HANDLER_IDS.UPDATEBASEHPNOTIFICATION]: {
-    handler: testHandler,
+    //handler: testHandler,
     protoType: 'packets.S2CUpdateBaseHPNotification',
     packetname: 'updateBaseHpNotification',
   },
   [HANDLER_IDS.GAMEOVERNOTIFICATION]: {
-    handler: testHandler,
+    //handler: testHandler,
     protoType: 'packets.S2CGameOverNotification',
     packetname: 'gameOverNotification',
   },
@@ -104,7 +106,7 @@ const handlers = {
     packetname: 'monsterDeathNotification',
   },
   [HANDLER_IDS.ENEMYMONSTERDEATHNOTIFICATION]: {
-    handler: testHandler,
+    //handler: testHandler,
     protoType: 'packets.S2CEnemyMonsterDeathNotification',
     packetname: 'enemyMonsterDeathNotification',
   },
