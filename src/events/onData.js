@@ -1,7 +1,9 @@
 export const onData = (socket) => async (data) => {
   // 데이터가 계속 오니까 여기에 쌓는거.
   socket.buffer = Buffer.concat([socket.buffer, data]);
-  // 1. packetType (2 bytes)
+
+
+// 1. packetType (2 bytes)
 const packetType = socket.buffer.readUInt16BE(0);
 
 // 2. versionLength (1 byte)
