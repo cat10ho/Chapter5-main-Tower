@@ -3,10 +3,6 @@ export const VERSION_LENGTH = 1;  //버전 길이
 export const SEQUENCE_LENGTH = 4;  //패킷 번호 길이?
 export const PAYLOAD_LENGTH = 4;  //실제 데이터 길이
 
-// 전체 길이
-export const TOTAL_HEADER_LENGTH = PACKET_TYPE_LENGTH + VERSION_LENGTH + SEQUENCE_LENGTH + PAYLOAD_LENGTH;
-
-
 export const PacketType = {
   REGISTER_REQUEST: 1,
   REGISTER_RESPONSE: 2,
