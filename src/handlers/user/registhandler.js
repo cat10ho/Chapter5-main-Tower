@@ -12,6 +12,7 @@ const registHandler = async ({ socket, sequence, payload }) => {
       message: '회원가입 성공!',
       failCode: 0,
     };
+    
     const packetType = PacketType.REGISTER_RESPONSE;
     const registResponse = createResponse(packetType, registpayload, sequence);
     socket.write(registResponse);
