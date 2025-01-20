@@ -3,14 +3,16 @@ import { createResponse } from '../../utils/response/createResponse.js';
 
 const spawnMonsterHandler = async ({ socket, sequence, payload }) => {
   try {
-    const { } = payload; //소켓으로 유저 찾아서 매칭.
+    const { } = payload; 
+
+
 
 
     
 
     const spawnMonsterpayload = {
         monsterId: 100,
-        monsterNumber: 100,
+        monsterNumber: 100, //1~5까지임 ㅇㅇ 내가 봄.
     };
 
     const packetType = PacketType.SPAWN_MONSTER_RESPONSE;

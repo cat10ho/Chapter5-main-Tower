@@ -1,4 +1,5 @@
 import { PacketType } from '../../constants/header.js';
+import { addUser } from '../../session/user.session.js';
 import { createResponse } from '../../utils/response/createResponse.js';
 
 const loginHandler = async ({ socket, sequence, payload }) => {
