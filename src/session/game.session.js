@@ -31,8 +31,6 @@ export const getAllGameSessions = () => {
   return gameSessions;
 };
 
-
-
 export const removeGameSessionSocket = (socket) => {
   for (const game of gameSessions) {
     const removedUser = game.removeUsersocket(socket); // 각 게임에서 소켓 기반 유저 제거

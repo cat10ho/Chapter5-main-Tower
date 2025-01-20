@@ -7,6 +7,8 @@ const loginHandler = async ({ socket, sequence, payload }) => {
 
 
 
+    addUser(socket);
+
 
 
     const loginpayload = {

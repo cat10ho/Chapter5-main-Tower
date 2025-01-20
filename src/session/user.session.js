@@ -1,8 +1,8 @@
 import { userSessions } from './sessions.js';
 import User from '../classes/models/user.class.js';
 
-export const addUser = (id, socket) => {
-  const user = new User(id, socket);
+export const addUser = (socket) => {
+  const user = new User(socket);
   userSessions.push(user);
   return user;
 };
@@ -14,9 +14,9 @@ export const removeUser = (socket) => {
   }
 };
 
-export const getUserById = (id) => {
-  return userSessions.find((user) => user.id === id);
-};
+// export const getUserById = (id) => {
+//   return userSessions.find((user) => user.id === id);
+// };
 
 export const getUserBySocket = (socket) => {
   return userSessions.find((user) => user.socket === socket);
