@@ -11,7 +11,6 @@ const matchHandler = async ({ socket, sequence, payload }) => {
 
 
     const user = getUserBySocket(socket);
-
     let gameSession = getAllGameSessions().find((session) => session.users.length === 1);
 
     const path = generateRandomMonsterPath(340);
@@ -19,34 +18,25 @@ const matchHandler = async ({ socket, sequence, payload }) => {
 
     if (gameSession) {
       gameSession.addUser(user);
+
+      // 임시 타워 추가
+      const towerId = gameSession.getPurchTowerConter();
+      const tower = { x: 200, y:340, towerId:towerId };
+      user.addTower(tower);
+
       gameSession.startGame();
     } else {
       const gameId = uuidv4();
       gameSession = addGameSession(gameId);
       gameSession.addUser(user);
+
+      // 임시 타워 추가
+      const towerId = gameSession.getPurchTowerConter();
+      const tower = { x: 200, y:340, towerId:towerId };
+      user.addTower(tower);
+      
     }
     
-
-    // 매칭이 성공하면 계속 동기화를 시켜줘야 한다.
-    //const stateSyncpayload = {
-    //  userGold: 100,
-    //  baseHp: 100,
-    //  monsterLevel: 100,
-    //  score: 100,
-    //  towers: [{
-    //    towerId: 100,
-    //    x: 0.1,
-    //    y: 0.1,
-    //  }],
-    //  monsters:[{
-    //    monsterId: 100,
-    //    monsterNumber: 100,
-    //    level: 100,
-    //  }],
-    //}
-    //const packetType = PacketType.STATE_SYNC_NOTIFICATION;
-    //const stateSyncResponse = createResponse(packetType, stateSyncpayload, sequence);
-
 
   } catch (error) {
     console.error(error);

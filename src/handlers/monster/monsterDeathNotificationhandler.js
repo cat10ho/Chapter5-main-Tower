@@ -8,15 +8,19 @@ const monsterDeathNotificationHandler = async ({ socket, sequence, payload }) =>
 
     const user = getUserBySocket(socket);
 
+    user.removeMonster(monsterId);
+
+    const enemyUser = getUserBySocket(user.getMatchingUsersocket());
+
+
     
     
-    // 대칭상대 몬스터 사망 동기화.
-    //const enemyMonsterDeathNotificationpayload = {
-    //  monsterId: 100,
-    //}
-    //const packetType = PacketType.ENEMY_MONSTER_DEATH_NOTIFICATION;
-    //const enemyMonsterDeathNotificationResponse = createResponse(packetType, enemyMonsterDeathNotificationpayload, sequence);
-    //socket.write(enemyMonsterDeathNotificationResponse);
+    const enemyMonsterDeathNotificationpayload = {
+      monsterId: monsterId,
+    }
+    const packetType = PacketType.ENEMY_MONSTER_DEATH_NOTIFICATION;
+    const enemyMonsterDeathNotificationResponse = createResponse(packetType, enemyMonsterDeathNotificationpayload, sequence);
+    enemyUser.socket.write(enemyMonsterDeathNotificationResponse);
 
   } catch (error) {
     console.error(error);
