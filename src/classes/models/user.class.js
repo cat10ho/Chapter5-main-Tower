@@ -110,6 +110,18 @@ class User {
     }
   }
 
+  clearUserData(){
+    this.score = 0;
+    this.gold = 100;
+    this.base = { hp: 100, maxHp: 100 };
+    this.basePosition = null;
+    this.towers = [];
+    this.monsters = []; //현재 내가 가진 몬스터.
+    this.monsterPath = null;
+    this.sequence = 0;
+    this.matchingUsersocket = null;
+    this.gameId = null;
+  }
 }
 
 export default User;

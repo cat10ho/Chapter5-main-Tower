@@ -1,10 +1,12 @@
 import { PacketType } from '../../constants/header.js';
+import { getUserBySocket } from '../../session/user.session.js';
 import { createResponse } from '../../utils/response/createResponse.js';
 
 const monsterDeathNotificationHandler = async ({ socket, sequence, payload }) => {
   try {
     const { monsterId } = payload; //소켓으로 유저 찾아서 매칭.
 
+    const user = getUserBySocket(socket);
 
     
     

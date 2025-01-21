@@ -11,7 +11,7 @@ const spawnMonsterHandler = async ({ socket, sequence, payload }) => {
 
     const gameSessions = getJoinGameSessions(user);
 
-    const monsterId = gameSessions.getSpawnMonstercounter();
+    const monsterId = gameSessions.getSpawnMonsterCounter();
     
     const monsterNumber = Math.floor(Math.random()*(4))+ 1 ;
 
@@ -29,7 +29,7 @@ const spawnMonsterHandler = async ({ socket, sequence, payload }) => {
 
 
 
-    //상대가 너동기화
+    //상대한테 내 몬스터 나왔다고 보네기.
     const enemyUser = getUserBySocket(user.getMatchingUsersocket());
 
     const spawnEnemyMonsterNotificationpayload = {
@@ -39,7 +39,7 @@ const spawnMonsterHandler = async ({ socket, sequence, payload }) => {
     packetType = PacketType.SPAWN_ENEMY_MONSTER_NOTIFICATION;
     const spawnEnemyMonsterNotificationResponse = createResponse(packetType, spawnEnemyMonsterNotificationpayload, sequence);
     enemyUser.socket.write(spawnEnemyMonsterNotificationResponse);
-
+    
   } catch (error) {
     console.error(error);
   }
