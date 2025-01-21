@@ -1,33 +1,44 @@
 import { PacketType } from '../../constants/header.js';
+import { getJoinGameSessions } from '../../session/game.session.js';
+import { getUserBySocket } from '../../session/user.session.js';
 import { createResponse } from '../../utils/response/createResponse.js';
 
 const spawnMonsterHandler = async ({ socket, sequence, payload }) => {
   try {
     const { } = payload; 
 
+    const user = getUserBySocket(socket);
 
+    const gameSessions = getJoinGameSessions(user);
 
-
+    const monsterId = gameSessions.getSpawnMonstercounter();
     
+    const monsterNumber = Math.floor(Math.random()*(4))+ 1 ;
 
+    const monster = { monsterId , monsterNumber, level:gameSessions.monsterLevel };
+
+    user.addMonster(monster);
+    
     const spawnMonsterpayload = {
-        monsterId: 100,
-        monsterNumber: 100, //1~5까지임 ㅇㅇ 내가 봄.
+        monsterId,
+        monsterNumber,
     };
-
-    const packetType = PacketType.SPAWN_MONSTER_RESPONSE;
+    let packetType = PacketType.SPAWN_MONSTER_RESPONSE;
     const spawnMonsterResponse = createResponse(packetType, spawnMonsterpayload, sequence);
     socket.write(spawnMonsterResponse);
 
-    
-    // 대칭상대 몬스터 스폰 동기화. 상대가 spawnMonsterHandler를 받았을때 보내면 됨.
-    //const spawnEnemyMonsterNotificationpayload = {
-    //  monsterId: 100,
-    //  monsterNumber: 100,
-    //}
-    //const packetType = PacketType.SPAWN_ENEMY_MONSTER_NOTIFICATION;
-    //const spawnEnemyMonsterNotificationResponse = createResponse(packetType, spawnEnemyMonsterNotificationpayload, sequence);
-    //socket.write(spawnEnemyMonsterNotificationResponse);
+
+
+    //상대가 너동기화
+    const enemyUser = getUserBySocket(user.getMatchingUsersocket());
+
+    const spawnEnemyMonsterNotificationpayload = {
+      monsterId,
+      monsterNumber,
+    }
+    packetType = PacketType.SPAWN_ENEMY_MONSTER_NOTIFICATION;
+    const spawnEnemyMonsterNotificationResponse = createResponse(packetType, spawnEnemyMonsterNotificationpayload, sequence);
+    enemyUser.socket.write(spawnEnemyMonsterNotificationResponse);
 
   } catch (error) {
     console.error(error);

@@ -13,6 +13,7 @@ class User {
     this.monsterPath = null;
     this.sequence = 0;
     this.matchingUsersocket = null;
+    this.gameId = null;
   }
 
   updateHighScore(highScore) {
@@ -48,7 +49,7 @@ class User {
   }
 
   getBasePositions() {
-    return this.basePositions;
+    return this.basePosition;
   }
 
   updateMonsterPaths(monsterPath) {
@@ -64,8 +65,14 @@ class User {
     return ++this.sequence;
   }
 
-  updateMatchingUsersocket(matchingUsersocket) {
-    this.matchingUsersocket = matchingUsersocket;
+  updateSpawnMonstercounter(spawnMonstercounter) {
+    this.spawnMonstercounter = spawnMonstercounter;
+  }
+
+  getSpawnMonstercounter() {
+    const spawnMonstercounter = this.spawnMonstercounter;
+    this.spawnMonstercounter++;
+    return spawnMonstercounter;
   }
 
   updateMatchingUsersocket(matchingUsersocket) {
@@ -74,12 +81,15 @@ class User {
 
   getMatchingUsersocket() {
     return this.matchingUsersocket;
-  } //필요 한가?
+  } 
 
-  getMatchUserData(opponent) {
-    
-    return{ gold: this.gold, base: this.base, highScore: this.highScore, towers: this.towers, monsters: this.monsters, score: this.score, monsterPath: this.monsterPath}
+  updateGameId(gameId) {
+    this.gameId = gameId;
   }
+
+  getGameId() {
+    return this.gameId;
+  } 
 
   //타워 추가.
   addTower(tower){
